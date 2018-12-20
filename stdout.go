@@ -10,7 +10,11 @@ import (
 
 func init() {
 	log.SetOutput(os.Stdout)
-	log.SetFormatter(&log.JSONFormatter{})
+	log.SetFormatter(&log.JSONFormatter{
+		FieldMap: log.FieldMap{
+			log.FieldKeyLevel: "severity",
+		},
+	})
 }
 
 func sendEventToSTDOUT(event *v1.Event) error {
